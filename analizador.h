@@ -10,7 +10,6 @@
 #include "rep.h"
 #include "exec.h"
 
-#define MAX 9
 
 #define RED   "\x1B[1;31m"
 #define GRN   "\x1B[32m"
@@ -26,52 +25,28 @@ typedef struct command{
     char name[15];
 } cmd;
 
-struct command keywords[MAX];
 void exec();
 
-void cargar(){
-    char ch, buffer[80];
-    memset(&buffer,'\0',sizeof(buffer));
-    FILE *fp;
-    int j=0, line=0;
-    fp = fopen("command.txt","r");
-
-    if(fp == NULL)    {
-        printf(RED "ERROR: NO SE PUDO ABRIR  EL ARCHIVO\n" RESET);
-        exit(0);
-    }
-
-    while((ch = fgetc(fp)) != EOF){
-        if(isalnum(ch)){
-            buffer[j++] = ch;
-        }else if((ch == '\n') && (j != 0)){
-            buffer[j] = '\0';
-            j = 0;
-            int id = 0;
-            char name[15]="";
-            memset(&name,'\0',sizeof(name));
-            sscanf( buffer, "%u %s",&id, name);
-            cmd mkd;
-            mkd.id = id;
-            memset(&mkd.name,'\0',sizeof(mkd.name));
-            strcat(mkd.name, name);
-            keywords[line] = mkd;
-            line++;
-            memset(&buffer,'\0',sizeof(buffer));
-        }
-
-    }
-    fclose(fp);
-
-}
 
 int isKeyword(char buffer[]){
-    int i;
-    for(i = 0; i < MAX; ++i){
-        if(strcasecmp(keywords[i].name, buffer) == 0){
-            return keywords[i].id;
-        }
-    }
+
+    if(strcasecmp("MKDISK",buffer)==0){
+        return 1;
+    }else if (strcasecmp("RMDISK",buffer)==0) {
+        return 2;
+    }else if (strcasecmp("FDISK",buffer)==0) {
+        return 3;
+    }else if (strcasecmp("MOUNT",buffer)==0) {
+        return 4;
+    }else if (strcasecmp("UNMOUNT",buffer)==0) {
+        return 5;
+    }else if (strcasecmp("REP",buffer)==0) {
+        return 6;
+    }else if (strcasecmp("EXEC",buffer)==0) {
+        return 7;
+    }/*else if (strcasecmp("EXEC",buffer)==0) {
+        return 8;
+    }*/
     return 0;
 }
 

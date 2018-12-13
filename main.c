@@ -4,7 +4,6 @@
 
 int main(){
 
-    cargar();
     char str[250];
     memset(&str,'\0',sizeof(str));
     printf(GRN "[=========================== MIA-2018 PRACTICA 1 ===========================]\n" RESET);
