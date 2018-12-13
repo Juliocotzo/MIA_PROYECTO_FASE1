@@ -9,6 +9,7 @@
 #include "unmount.h"
 #include "rep.h"
 #include "exec.h"
+#include "mkfs.h"
 
 
 #define RED   "\x1B[1;31m"
@@ -44,9 +45,9 @@ int isKeyword(char buffer[]){
         return 6;
     }else if (strcasecmp("EXEC",buffer)==0) {
         return 7;
-    }/*else if (strcasecmp("EXEC",buffer)==0) {
+    }else if (strcasecmp("MKFS",buffer)==0) {
         return 8;
-    }*/
+    }
     return 0;
 }
 
@@ -74,7 +75,9 @@ void commandAnalyzer(int state, char str[], int start){
     case 7:
         processEXEC(str,start);
         exec();
-
+        break;
+    case 8:
+        processMKFS(str, start);
         break;
     }
 }

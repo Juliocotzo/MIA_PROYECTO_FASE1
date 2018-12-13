@@ -23,9 +23,12 @@ int main(){
         if(strcmp(str, "EXEC")==0){
             processCommand("exec -path->/home/julio/Descargas/Entrada_1.sh");
         }
+        if(strcmp(str, "EXEC1")==0){
+            processCommand("exec -path->\"/home/julio/Documentos/Qt Creator/PROYECTO1/Entrada.sh\"");
+        }
 
 
-        processCommand(str);
+        //processCommand(str);
         memset(&str,'\0',sizeof(str));
 
     } while (true);

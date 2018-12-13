@@ -98,9 +98,6 @@ void desmontar(char id[]){
     struct nodo *aux2;
     struct nodo *actual2;
     int nodo_eliminar;
-    //***********************************************************
-    //**                        BUSCAR                         **
-    //***********************************************************
     strcpy(aux,id);
     printf("IDDDD---->%s\n",id);
     while (p<=numNodos) {
@@ -111,10 +108,6 @@ void desmontar(char id[]){
         p++;
         actual=actual->siguiente;
     }
-
-    //***********************************************************
-    //**                      ELIMINAR                         **
-    //***********************************************************
     if (bandera==1) {
         if (nodo_eliminar>numNodos || nodo_eliminar<1) {
             printf("\nERROR: No existe esa particion\n");
